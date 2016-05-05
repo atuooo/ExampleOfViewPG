@@ -21,7 +21,7 @@ class StretchableViewController: UIViewController {
         let edgeInsets = UIEdgeInsetsMake(30, 30, 30, 30)
         imageView.image = image.resizableImageWithCapInsets(edgeInsets, resizingMode: .Stretch)
         
-        let pinchGesture = UIPinchGestureRecognizer(target: self, action: "pinch:")
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(StretchableViewController.pinch(_:)))
         self.view.addGestureRecognizer(pinchGesture)
     }
 

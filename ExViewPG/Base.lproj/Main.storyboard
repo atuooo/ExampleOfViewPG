@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A278b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4fg-Ns-tUh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15A278b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4fg-Ns-tUh">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--ExViewPG-->
@@ -174,19 +174,31 @@ The grayView beind the imageView is set to the imageView's frame</string>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6XD-NQ-4a9">
-                                <rect key="frame" x="46" y="219" width="90" height="90"/>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6XD-NQ-4a9">
+                                <rect key="frame" x="60" y="255" width="90" height="90"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="1hV-TN-gK8"/>
+                                    <constraint firstAttribute="width" constant="90" id="hxY-hN-EAL"/>
+                                </constraints>
                             </view>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" fixedFrame="YES" image="kodama-full" translatesAutoresizingMaskIntoConstraints="NO" id="ZqG-Iz-5pS" userLabel="Front View">
-                                <rect key="frame" x="46" y="219" width="90" height="90"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="kodama-full" translatesAutoresizingMaskIntoConstraints="NO" id="ZqG-Iz-5pS" userLabel="Front View">
+                                <rect key="frame" x="60" y="255" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="O42-1F-Qe9"/>
+                                    <constraint firstAttribute="height" constant="90" id="Rzx-I7-WOL"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="VJP-3P-8P0" firstAttribute="top" secondItem="cYG-Hc-XVL" secondAttribute="bottom" constant="8" id="FNk-HH-pZI"/>
+                            <constraint firstItem="6XD-NQ-4a9" firstAttribute="leading" secondItem="75m-iR-FUu" secondAttribute="leading" constant="60" id="QVI-nZ-E5a"/>
+                            <constraint firstItem="ZqG-Iz-5pS" firstAttribute="centerY" secondItem="75m-iR-FUu" secondAttribute="centerY" id="U7r-Uc-zv3"/>
                             <constraint firstItem="VJP-3P-8P0" firstAttribute="leading" secondItem="75m-iR-FUu" secondAttribute="leading" constant="10" id="Zds-Js-MQq"/>
+                            <constraint firstItem="6XD-NQ-4a9" firstAttribute="centerY" secondItem="75m-iR-FUu" secondAttribute="centerY" id="nyE-Op-Q8a"/>
                             <constraint firstAttribute="trailing" secondItem="VJP-3P-8P0" secondAttribute="trailing" constant="10" id="tT1-RB-2Yz"/>
+                            <constraint firstItem="ZqG-Iz-5pS" firstAttribute="leading" secondItem="75m-iR-FUu" secondAttribute="leading" constant="60" id="z0t-JW-eYU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="frame/bounds/center" id="ZUG-m3-edn"/>

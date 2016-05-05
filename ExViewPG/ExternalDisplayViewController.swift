@@ -47,8 +47,8 @@ class ExternalDisplayViewController: UIViewController {
     
     func setupScreenConnectionNotificationHandlers() {
         let center = NSNotificationCenter.defaultCenter()
-        center.addObserver(self, selector: "handleScreenConnectNotification:", name: UIScreenDidConnectNotification, object: nil)
-        center.addObserver(self, selector: "handleScreenDisconnectNotification:", name: UIScreenDidDisconnectNotification, object: nil)
+        center.addObserver(self, selector: #selector(ExternalDisplayViewController.handleScreenConnectNotification(_:)), name: UIScreenDidConnectNotification, object: nil)
+        center.addObserver(self, selector: #selector(ExternalDisplayViewController.handleScreenDisconnectNotification(_:)), name: UIScreenDidDisconnectNotification, object: nil)
     }
     
     func handleScreenConnectNotification(notification: NSNotification) {

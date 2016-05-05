@@ -20,13 +20,13 @@ class FrameBoundsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let rotateGesture = UIRotationGestureRecognizer(target: self, action: "rotate:")
+        let rotateGesture = UIRotationGestureRecognizer(target: self, action: #selector(FrameBoundsViewController.rotate(_:)))
         view.addGestureRecognizer(rotateGesture)
         
-        let panGesture = UIPanGestureRecognizer(target: self, action: "pan:")
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(FrameBoundsViewController.pan(_:)))
         frontView.addGestureRecognizer(panGesture)
         
-        let pinchGesture = UIPinchGestureRecognizer(target: self, action: "pinch:")
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(FrameBoundsViewController.pinch(_:)))
         view.addGestureRecognizer(pinchGesture)
     }
     
