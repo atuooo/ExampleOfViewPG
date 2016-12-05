@@ -22,61 +22,61 @@ class ExternalDisplayViewController: UIViewController {
     }
     
     func checkForExistingScreenAndInitializeIfPresent() {
-        if UIScreen.screens().count > 1 {
-            let extScreen = UIScreen.screens().last!
-            extScreen.overscanCompensation = .None // no scaling will occur. use overscanCompensationInsets to determine the necessary insets to avoid clipping
+        if UIScreen.screens.count > 1 {
+            let extScreen = UIScreen.screens.last!
+            extScreen.overscanCompensation = .none // no scaling will occur. use overscanCompensationInsets to determine the necessary insets to avoid clipping
             let screenBounds = extScreen.bounds
             
             secondWindow = UIWindow(frame: screenBounds)
-            secondWindow.backgroundColor = UIColor.whiteColor()
-            secondWindow.layer.borderColor = UIColor.blackColor().CGColor
+            secondWindow.backgroundColor = UIColor.white
+            secondWindow.layer.borderColor = UIColor.black.cgColor
             secondWindow.layer.borderWidth = 5
             secondWindow.screen = extScreen
             
-            let label = UILabel(frame: CGRectMake((screenBounds.width - 300)/2, (screenBounds.height - 90)/2, 300, 90))
-            label.textAlignment = .Center
+            let label = UILabel(frame: CGRect(x: (screenBounds.width - 300)/2, y: (screenBounds.height - 90)/2, width: 300, height: 90))
+            label.textAlignment = .center
             label.font = UIFont(name: "Menlo-Regular", size: 20)
             label.text = "I'm in external window"
             secondWindow.addSubview(label)
             
-            secondWindow.hidden = false
+            secondWindow.isHidden = false
             
             stateLabel.text = "Connect \n \(screenBounds)"
         }
     }
     
     func setupScreenConnectionNotificationHandlers() {
-        let center = NSNotificationCenter.defaultCenter()
-        center.addObserver(self, selector: #selector(ExternalDisplayViewController.handleScreenConnectNotification(_:)), name: UIScreenDidConnectNotification, object: nil)
-        center.addObserver(self, selector: #selector(ExternalDisplayViewController.handleScreenDisconnectNotification(_:)), name: UIScreenDidDisconnectNotification, object: nil)
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(ExternalDisplayViewController.handleScreenConnectNotification(_:)), name: NSNotification.Name.UIScreenDidConnect, object: nil)
+        center.addObserver(self, selector: #selector(ExternalDisplayViewController.handleScreenDisconnectNotification(_:)), name: NSNotification.Name.UIScreenDidDisconnect, object: nil)
     }
     
-    func handleScreenConnectNotification(notification: NSNotification) {
+    func handleScreenConnectNotification(_ notification: Notification) {
         print("connect")
         let extScreen = notification.object as! UIScreen
-        extScreen.overscanCompensation = .None // no scaling will occur. use overscanCompensationInsets to determine the necessary insets to avoid clipping
+        extScreen.overscanCompensation = .none // no scaling will occur. use overscanCompensationInsets to determine the necessary insets to avoid clipping
         let screenBounds = extScreen.bounds
 
         secondWindow = UIWindow(frame: screenBounds)
-        secondWindow.backgroundColor = UIColor.whiteColor()
-        secondWindow.layer.borderColor = UIColor.blackColor().CGColor
+        secondWindow.backgroundColor = UIColor.white
+        secondWindow.layer.borderColor = UIColor.black.cgColor
         secondWindow.layer.borderWidth = 5
         secondWindow.screen = extScreen
 
-        let label = UILabel(frame: CGRectMake((screenBounds.width - 300)/2, (screenBounds.height - 90)/2, 300, 90))
-        label.textAlignment = .Center
+        let label = UILabel(frame: CGRect(x: (screenBounds.width - 300)/2, y: (screenBounds.height - 90)/2, width: 300, height: 90))
+        label.textAlignment = .center
         label.font = UIFont(name: "Menlo-Regular", size: 20)
         label.text = "I'm in external window"
         secondWindow.addSubview(label)
         
-        secondWindow.hidden = false
+        secondWindow.isHidden = false
         
         stateLabel.text = "Connect \n \(screenBounds)"
     }
     
-    func handleScreenDisconnectNotification(notification: NSNotification) {
+    func handleScreenDisconnectNotification(_ notification: Notification) {
         print("disconnect")
-        secondWindow.hidden = true
+        secondWindow.isHidden = true
 //        secondWindow.removeFromSuperview()
     }
 }

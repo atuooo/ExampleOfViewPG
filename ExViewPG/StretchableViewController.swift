@@ -19,17 +19,17 @@ class StretchableViewController: UIViewController {
         
         let image = UIImage(named: "stretchImage")!
         let edgeInsets = UIEdgeInsetsMake(30, 30, 30, 30)
-        imageView.image = image.resizableImageWithCapInsets(edgeInsets, resizingMode: .Stretch)
+        imageView.image = image.resizableImage(withCapInsets: edgeInsets, resizingMode: .stretch)
         
         let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(StretchableViewController.pinch(_:)))
         self.view.addGestureRecognizer(pinchGesture)
     }
 
-    func pinch(sender: UIPinchGestureRecognizer) {
-        imageView.frame.size = CGSizeMake(100*scale*sender.scale, 100)
-        imageView.center = CGPointMake(view.center.x, imageView.center.y)
+    func pinch(_ sender: UIPinchGestureRecognizer) {
+        imageView.frame.size = CGSize(width: 100*scale*sender.scale, height: 100)
+        imageView.center = CGPoint(x: view.center.x, y: imageView.center.y)
         
-        if sender.state == .Ended {
+        if sender.state == .ended {
             scale = sender.scale * scale
         }
     }

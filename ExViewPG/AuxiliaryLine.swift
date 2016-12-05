@@ -15,23 +15,24 @@ class AuxiliaryLine: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
 
-        let context = UIGraphicsGetCurrentContext()
+        let context = UIGraphicsGetCurrentContext()!
         
         let bezierRect = UIBezierPath(rect: self.bounds)
-        UIColor.yellowColor().setStroke()
+        UIColor.yellow.setStroke()
         bezierRect.lineWidth = 4
-        CGContextSaveGState(context)
-        CGContextSetLineDash(context, 2, [4, 3], 2)
+        context.saveGState()
+        
+        context.setLineDash(phase: 2, lengths: [4, 3])
         bezierRect.stroke()
-        CGContextRestoreGState(context)
+        context.restoreGState()
     }
 }

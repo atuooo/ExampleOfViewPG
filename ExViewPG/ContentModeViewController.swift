@@ -16,8 +16,8 @@ class ContentModeViewController: UIViewController {
     @IBOutlet weak var imageView : UIImageView!
     @IBOutlet weak var pickerView: UIPickerView!
     
-    @IBAction func clipSwitch(sender: AnyObject) {
-        imageView.clipsToBounds = (sender as! UISwitch).on
+    @IBAction func clipSwitch(_ sender: AnyObject) {
+        imageView.clipsToBounds = (sender as! UISwitch).isOn
     }
     
     var selectedMode: Int = 0 {
@@ -41,28 +41,28 @@ class ContentModeViewController: UIViewController {
         
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // 需要等 imageView 加载完才能获取到其 准确的frame，不然只是在storyboard中的frame
+
         let auxiliaryLine = AuxiliaryLine(frame: imageView.frame)
-        self.view.addSubview(auxiliaryLine)
+        view.addSubview(auxiliaryLine)
     }
 }
 
 extension ContentModeViewController: UIPickerViewDelegate, UIPickerViewDataSource  {
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return modes.count
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return modes[row]
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedMode = row
     }
 }

@@ -15,7 +15,7 @@ class FrameBoundsViewController: UIViewController {
     
     var angle = CGFloat(0)
     var scale = CGFloat(1)
-    var location = CGPointZero
+    var location = CGPoint.zero
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,38 +31,38 @@ class FrameBoundsViewController: UIViewController {
     }
     
     // MARK: - gesture action
-    func rotate(sender: UIRotationGestureRecognizer) {
+    func rotate(_ sender: UIRotationGestureRecognizer) {
         // 对 frontView 进行 transform 操作
-        let t1 = CGAffineTransformMakeRotation(angle + sender.rotation)
-        let t2 = CGAffineTransformMakeScale(scale, scale)
-        frontView.transform = CGAffineTransformConcat(t1, t2) // 先旋转再缩放
+        let t1 = CGAffineTransform(rotationAngle: angle + sender.rotation)
+        let t2 = CGAffineTransform(scaleX: scale, y: scale)
+        frontView.transform = t1.concatenating(t2) // 先旋转再缩放
      
         // 将transform之后的frontView 的 frame 赋给 backView
         backView.frame = frontView.frame
         
-        if sender.state == .Ended {
+        if sender.state == .ended {
             angle += sender.rotation
         }
     }
     
-    func pinch(sender: UIPinchGestureRecognizer) {
+    func pinch(_ sender: UIPinchGestureRecognizer) {
         // 对 frontView 进行 transform 操作
-        let t1 = CGAffineTransformMakeRotation(angle)
-        let t2 = CGAffineTransformMakeScale(scale + sender.scale - 1, scale + sender.scale - 1)
-        frontView.transform = CGAffineTransformConcat(t1, t2)
+        let t1 = CGAffineTransform(rotationAngle: angle)
+        let t2 = CGAffineTransform(scaleX: scale + sender.scale - 1, y: scale + sender.scale - 1)
+        frontView.transform = t1.concatenating(t2)
         
         // 将transform之后的frontView 的 frame 赋给 backView
         backView.frame = frontView.frame
         
-        if sender.state == .Ended {
+        if sender.state == .ended {
             scale += sender.scale - 1
         }
     }
     
-    func pan(sender: UIPanGestureRecognizer) {
-        let translation = sender.translationInView(view)
+    func pan(_ sender: UIPanGestureRecognizer) {
+        let translation = sender.translation(in: view)
         
-        if sender.state == .Began {
+        if sender.state == .began {
             location = frontView.center
         }
         
